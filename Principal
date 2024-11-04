@@ -9,41 +9,46 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
-
 public class ProyectoMacrobiotica {
+
     //comentar este sector
     public static final ImageIcon ICONO = new ImageIcon("C:\\Users\\Equipo\\Documents\\NetBeansProjects\\proyectoMacrobiotica\\imagen.png");
-        public static boolean salidaMenu = true;
-        //comentar este sector
-        public static void mostrarMensaje(String mensaje, String titulo) {
-            JOptionPane.showMessageDialog(null,
-                    mensaje,
-                    titulo,
-                    JOptionPane.INFORMATION_MESSAGE,
-                    ICONO);
-        }
+    public static boolean salidaMenu = true;
+    //comentar este sector
 
-        public static void main(String[] args) {
-            mostrarMensaje("Bienvenido  ", "Macrobiotica Verde Bendito");
-            // Llamar al método de inicio de sesión aquí, explicar mas 
-            Login.inicioSesion(args);
-        }
-        //comentar este sector
-        private static class Login {
+    public static void mostrarMensaje(String mensaje, String titulo) {
+        JOptionPane.showMessageDialog(null,
+                mensaje,
+                titulo,
+                JOptionPane.INFORMATION_MESSAGE,
+                ICONO);
+    }
 
-            public static void inicioSesion(String[] args) {
-                String usuario = "admin";
-                String contrasehna = "12345";
+    public static void main(String[] args) {
+        mostrarMensaje("Bienvenido  ", "Macrobiotica Verde Bendito");
+        // Llamar al método de inicio de sesión aquí, explicar mas 
+        Login.inicioSesion(args);
+    }
+    //comentar este sector
+
+    private static class Login {
+
+        public static void inicioSesion(String[] args) {
+            String usuario = "admin";
+            String contrasehna = "12345";
+            boolean acceso = false;
+            //comentar aca el signo de admiracion
+            while (!acceso) {
                 usuario = JOptionPane.showInputDialog("Ingrese su usuario: ");
                 //se cambia la ñ por otra forma de escritura para evitar conflictos de lenguaje por ser un caracter especial
                 contrasehna = JOptionPane.showInputDialog("Ingrese su contraseña: ");
                 //comentar este sector
                 if ("admin".equalsIgnoreCase(usuario) && "12345".equals(contrasehna)) {
                     JOptionPane.showMessageDialog(null, "Bienvenido a la Macrobiotica");
-
+                    acceso = true;
                     while (salidaMenu) {
                         // Mostrar Menú
-                       String menu = "Menú de Opciones Generales:\n"
+                        String menu = "Menú de Opciones Generales:\n"
                                 + "1. Lista de productos\n"
                                 + "2. Información de entrega\n"
                                 + "3. Carrito de compras\n"
@@ -52,36 +57,35 @@ public class ProyectoMacrobiotica {
                                 + "6. Información de contacto\n"
                                 + "7. Salir del menú\n"
                                 + "Seleccione una opción:";
-                       
-                       //Comentar esta sector
-                       int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Menú de opciones",
-                        JOptionPane.INFORMATION_MESSAGE, ICONO, null, "").toString());
-                       
+
+                        //Comentar esta sector
+                        int opcion = Integer.parseInt(JOptionPane.showInputDialog(null, menu, "Menú de opciones",
+                                JOptionPane.INFORMATION_MESSAGE, ICONO, null, "").toString());
 
                         // Selección del menú usando switch-case
                         switch (opcion) {
                             case 1:
                                 //comentar este sector
                                 mostrarMensaje("Lista de productos...", "Opción 1");
-                                String listaProductos ="Opcion 1:Lista de Productos:\n" 
-                               + "1. Melatonina\n" 
-                               + "2. Ashwagandha\n" 
-                               + "3. Citrato de magnesio\n" 
-                               + "4. Potasio\n" 
-                               + "5. Zinc\n" 
-                               + "6. Liv 52\n"
-                               + "7. Vitamina B12\n" 
-                               + "8. Vitamina D3\n" 
-                               + "9. Tilo\n"
-                               + "10. Colageno\n" 
-                               + "11. Capsulas de vinagre\n" 
-                               + "12. Pasiflora\n" 
-                               + "13. Leche Dorada\n" 
-                               + "5. Shilajit\n" 
-                               + "6. Maca Negra";
+                                String listaProductos = "Opcion 1:Lista de Productos:\n"
+                                        + "1. Melatonina\n"
+                                        + "2. Ashwagandha\n"
+                                        + "3. Citrato de magnesio\n"
+                                        + "4. Potasio\n"
+                                        + "5. Zinc\n"
+                                        + "6. Liv 52\n"
+                                        + "7. Vitamina B12\n"
+                                        + "8. Vitamina D3\n"
+                                        + "9. Tilo\n"
+                                        + "10. Colageno\n"
+                                        + "11. Capsulas de vinagre\n"
+                                        + "12. Pasiflora\n"
+                                        + "13. Leche Dorada\n"
+                                        + "5. Shilajit\n"
+                                        + "6. Maca Negra";
                                 //comentar este sector
-                                JOptionPane.showMessageDialog(null, listaProductos, "Catálogo", JOptionPane.INFORMATION_MESSAGE
-                                        , ICONO);
+                                JOptionPane.showMessageDialog(null, listaProductos, "Catálogo", JOptionPane.INFORMATION_MESSAGE,
+                                        ICONO);
 
                                 break;
                             case 2:
@@ -98,16 +102,18 @@ public class ProyectoMacrobiotica {
                                 salidaMenu = false; // Cambia la variable para salir del menú
                                 mostrarMensaje("Saliendo del menú...", "Opción 7");
                                 break;
-                                // No existe alternativa
-                            default: 
+                            // No existe alternativa
+                            default:
                                 JOptionPane.showMessageDialog(null, "Opción no válida, intente de nuevo.");
                                 break;
                         }
-                    }
 
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Contraseña o usuario incorrecto, intente de nuevo");
+
                 }
             }
         }
     }
+}
